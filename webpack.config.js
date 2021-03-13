@@ -6,7 +6,8 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
+    assetModuleFilename: 'images/[name][ext]'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,6 +24,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        // loader: 'file-loader',
+        // options: {
+        //     outputPath: 'images',
+        //     name: '[name].[ext]'
+        //   }
       },
     ],
   },
