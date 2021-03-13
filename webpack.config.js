@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const distPath = path.join(__dirname, 'dist');
 
@@ -24,12 +25,15 @@ module.exports = {
       title: 'Simple Invoicing - Built with AngularJS',
       template: './index.html'
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css'
+    })
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
