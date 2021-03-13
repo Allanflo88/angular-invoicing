@@ -695,7 +695,6 @@
     "webpack-cli": "^4.5.0",
     "webpack-config-single-spa": "^2.1.1",
     "webpack-dev-middleware": "^4.1.0",
-    "webpack-dev-server": "^4.0.0-beta.0",
     "webpack-merge": "^5.7.3",
     "webpack-sources": "^2.2.0",
     "websocket-driver": "^0.7.4",
@@ -726,7 +725,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -742,6 +743,7 @@
     "css-loader": "^5.1.2",
     "html-webpack-plugin": "^5.3.1",
     "style-loader": "^2.0.0",
-    "webpack": "^5.25.0"
+    "webpack": "^5.25.0",
+    "webpack-dev-server": "^4.0.0-beta.0"
   }
 }
