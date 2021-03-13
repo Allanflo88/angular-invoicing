@@ -35,6 +35,13 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource'
       },
+      {
+        test: /\.jsx$/i,
+        include: [
+          path.resolve(__dirname, 'src/components')
+        ],
+        use: ['babel-loader']
+      }
     ],
   }
 };
