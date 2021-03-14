@@ -1,3 +1,6 @@
+import {react2angular} from 'react2angular';
+import {Logo} from '../src/components/logo.jsx'
+
 angular.module('invoicing', [])
 
 // The default logo for the invoice
@@ -154,18 +157,6 @@ angular.module('invoicing', [])
     $scope.invoice.items.push({ qty:0, cost:0, description:"" });
   }
 
-  // Toggle's the logo
-  $scope.toggleLogo = function(element) {
-    $scope.logoRemoved = !$scope.logoRemoved;
-    LocalStorage.clearLogo();
-  };
-
-  // Triggers the logo chooser click event
-  $scope.editLogo = function() {
-    // angular.element('#imgInp').trigger('click');
-    document.getElementById('imgInp').click();
-  };
-
   $scope.printInfo = function() {
     window.print();
   };
@@ -231,11 +222,8 @@ angular.module('invoicing', [])
   angular.element(document).ready(function () {
     // Set focus
     document.getElementById('invoice-number').focus();
-
-    // Changes the logo whenever the input changes
-    document.getElementById('imgInp').onchange = function() {
-      readUrl(this);
-    };
-  });
+  })
 
 }])
+
+.component('logoComponent',  react2angular(Logo, [], ['DEFAULT_LOGO','LocalStorage']));

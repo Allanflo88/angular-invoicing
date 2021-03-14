@@ -6,7 +6,7 @@
   <meta name="description" content="AngularJS and Angular Code Example for creating Invoices and Invoicing Application">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
 </head>
 <body ng-app="invoicing" ng-controller="InvoiceCtrl" >
   <div class="container" width="800px" id="invoice" >
@@ -22,14 +22,7 @@
         </div>
       </div>
       <div class="col-xs-6 logo-container">
-        <input type="file" id="imgInp" />
-        <img ng-hide="logoRemoved" id="company_logo" ng-src="{{ logo }}" alt="your image" width="300" />
-        <div>
-          <div class="noPrint" ng-hide="printMode">
-            <a ng-click="editLogo()" href >Edit Logo</a>
-            <a ng-click="toggleLogo()" id="remove_logo" href >{{ logoRemoved ? 'Show' : 'Hide' }} logo</a>
-          </div>
-        </div>
+        <logo-component></logo-component>
       </div>
     </div>
     <div class="row infos">

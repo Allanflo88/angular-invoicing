@@ -8,6 +8,7 @@ module.exports = {
   entry: './src/index.js',
   mode: 'development',
   devtool: 'inline-source-map',
+  target: "web",
   devServer: {
     open: true,
     compress: true,
@@ -40,11 +41,17 @@ module.exports = {
         type: 'asset/resource'
       },
       {
-        test: /\.jsx$/i,
+        test: /\.jsx$/,
+        exclude: '/node_modules/',
         include: [
           path.resolve(__dirname, 'src/components')
         ],
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+              presets: ['@babel/react', '@babel/env']
+          }
+        }
       }
     ],
   }
