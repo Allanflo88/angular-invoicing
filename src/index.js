@@ -1,8 +1,12 @@
 //JS Files
-import '../js/main.js'
+import 'jquery'
+import 'bootstrap';
+import '../js/angular.min.js';
+import '../js/main.js';
 
 //CSS Files
-import '../css/style.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/style.css';
 
 //Assets Files
-import '../images/metaware_logo.png'
+import '../images/metaware_logo.png';
