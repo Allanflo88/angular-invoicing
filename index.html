@@ -56,8 +56,7 @@
         <add-item-component print-mode="printMode"></add-item-component>
       </div>
       <div class="row">
-        <div class="col-xs-10 text-right">Sub Total</div>
-        <div class="col-xs-2 text-right">{{invoiceSubTotal() | currency: currencySymbol}}</div>
+        <subtotal-component currency-symbol="currencySymbol" items="invoice.items"></subtotal-component>
       </div>
       <div class="row">
         <div class="col-xs-10 text-right">Tax(%): <input ng-model="invoice.tax" ng-validate="number" style="width:43px"></div>
