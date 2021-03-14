@@ -1,6 +1,7 @@
 import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
+import {TableHeader} from '../src/components/tableHeader.jsx';
 
 angular.module('invoicing', [])
 
@@ -216,4 +217,5 @@ angular.module('invoicing', [])
 }])
 
 .component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
-.component('footerComponent',  react2angular(Footer, ['printMode'], []));
+.component('footerComponent',  react2angular(Footer, ['printMode'], []))
+.component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []));

@@ -45,13 +45,7 @@
       </div>
     </div>
     <div class="items-table">
-      <div class="row header">
-        <div class="col-xs-1">&nbsp;</div>
-        <div class="col-xs-5">Description</div>
-        <div class="col-xs-2">Quantity</div>
-        <div class="col-xs-2">Cost {{currencySymbol}}</div>
-        <div class="col-xs-2 text-right">Total</div>
-      </div>
+      <table-header-component currency-symbol="currencySymbol"></table-header-component>
       <div class="row invoice-item" ng-repeat="item in invoice.items" ng-animate="'slide-down'">
         <div class="col-xs-1 remove-item-container">
           <a href ng-hide="printMode" ng-click="removeItem(item)" class="btn btn-danger">[X]</a>
