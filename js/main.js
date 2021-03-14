@@ -1,13 +1,13 @@
 import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
-import {TableHeader} from '../src/components/tableHeader.jsx';
-import {TableRow} from '../src/components/tableRow.jsx';
-import {AddItemTableRow} from '../src/components/addItemTableRow.jsx';
-import {SubTotal} from '../src/components/subTotal.jsx';
-import {Tax} from '../src/components/tax.jsx';
-import {GrandTotal} from '../src/components/grandTotal.jsx';
-import {PrintButton} from '../src/components/printButton.jsx';
+import {TableHeader} from '../src/components/productsTable/tableHeader.jsx';
+import {TableRow} from '../src/components/productsTable/tableRow.jsx';
+import {AddItemTableRow} from '../src/components/productsTable/addItemTableRow.jsx';
+import {SubTotal} from '../src/components/summary/subTotal.jsx';
+import {Tax} from '../src/components/summary/tax.jsx';
+import {GrandTotal} from '../src/components/summary/grandTotal.jsx';
+import {PrintButton} from '../src/components/buttons/printButton.jsx';
 
 import angular from 'angular';
 
