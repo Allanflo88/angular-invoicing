@@ -3,6 +3,7 @@ import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
 import {TableHeader} from '../src/components/tableHeader.jsx';
 import {TableRow} from '../src/components/tableRow.jsx';
+import {AddItemTableRow} from '../src/components/addItemTableRow.jsx';
 import angular from 'angular';
 
 angular.module('invoicing', [])
@@ -158,7 +159,7 @@ angular.module('invoicing', [])
   })()
   // Adds an item to the invoice's items
   $scope.addItem = function() {
-    $scope.invoice.items.push({ qty:0, cost:0, description:"" });
+    $scope.invoice.items.push({ qty:0, cost:0, description:"", id: $scope.invoice.items.length + 1 });
   }
 
   $scope.printInfo = function() {
@@ -233,6 +234,11 @@ angular.module('invoicing', [])
     $scope.$on('removeItem', function(event, data) {
       $scope.removeItem(data);
     });
+    $scope.$on('addItem', function() {
+      $timeout(function(){
+        $scope.addItem();
+      });
+    });
   })
 
 }])
@@ -240,4 +246,5 @@ angular.module('invoicing', [])
 .component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
 .component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []))
-.component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']));
+.component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']))
+.component('addItemComponent',  react2angular(AddItemTableRow, ['printMode'], ['$scope']));

@@ -53,9 +53,7 @@
           print-mode="printMode"></table-row-component>
       </div>
       <div class="row invoice-item">
-        <div class="col-xs-12 add-item-container" ng-hide="printMode">
-          <a class="btn btn-primary" href ng-click="addItem()" >[+]</a>
-        </div>
+        <add-item-component print-mode="printMode"></add-item-component>
       </div>
       <div class="row">
         <div class="col-xs-10 text-right">Sub Total</div>
