@@ -1,5 +1,6 @@
 import {react2angular} from 'react2angular';
-import {Logo} from '../src/components/logo.jsx'
+import {Logo} from '../src/components/logo.jsx';
+import {Footer} from '../src/components/footer.jsx';
 
 angular.module('invoicing', [])
 
@@ -201,18 +202,6 @@ angular.module('invoicing', [])
     saveInvoice();
   };
 
-  // Reads a url
-  var readUrl = function(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById('company_logo').setAttribute('src', e.target.result);
-        LocalStorage.setLogo(e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
-
   // Saves the invoice in local storage
   var saveInvoice = function() {
     LocalStorage.setInvoice($scope.invoice);
@@ -226,4 +215,5 @@ angular.module('invoicing', [])
 
 }])
 
-.component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']));
+.component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
+.component('footerComponent',  react2angular(Footer, ['printMode'], []));
