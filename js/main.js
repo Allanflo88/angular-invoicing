@@ -152,19 +152,9 @@ angular.module('invoicing', [])
       $scope.invoice = invoice ? invoice : DEFAULT_INVOICE;
     }();
 
-    // Set logo to the one from local storage or use default
-    !function() {
-      var logo = LocalStorage.getLogo();
-      $scope.logo = logo ? logo : DEFAULT_LOGO;
-    }();
-
     $scope.availableCurrencies = Currency.all();
 
   })()
-  // Adds an item to the invoice's items
-  $scope.addItem = function() {
-    $scope.invoice.items.push({ qty:0, cost:0, description:"", id: $scope.invoice.items.length + 1 });
-  }
 
   $scope.printInfo = function() {
     window.print();
