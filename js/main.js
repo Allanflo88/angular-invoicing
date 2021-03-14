@@ -2,6 +2,8 @@ import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
 import {TableHeader} from '../src/components/tableHeader.jsx';
+import {TableRow} from '../src/components/tableRow.jsx';
+import angular from 'angular';
 
 angular.module('invoicing', [])
 
@@ -27,7 +29,7 @@ angular.module('invoicing', [])
     postal: 'M5S 1B6'
   },
   items:[
-    { qty: 10, description: 'Gadget', cost: 9.95 }
+    { id: 1, qty: 10, description: 'Gadget', cost: 9.95 }
   ]
 })
 
@@ -130,8 +132,8 @@ angular.module('invoicing', [])
 }])
 
 // Main application controller
-.controller('InvoiceCtrl', ['$scope', '$http', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage', 'Currency',
-  function($scope, $http, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage, Currency) {
+.controller('InvoiceCtrl', ['$scope', '$http','$timeout', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage', 'Currency',
+  function($scope, $http,$timeout, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage, Currency) {
 
   // Set defaults
   $scope.currencySymbol = '$';
@@ -164,8 +166,14 @@ angular.module('invoicing', [])
   };
 
   // Remotes an item from the invoice
-  $scope.removeItem = function(item) {
-    $scope.invoice.items.splice($scope.invoice.items.indexOf(item), 1);
+  $scope.removeItem = function(itemToRemove) {
+    $timeout(function(){
+      var indexOfitem = $scope.invoice.items.findIndex(function(item){
+        return item.id === itemToRemove.id;
+      })
+      $scope.invoice.items.splice(indexOfitem, 1);
+    });
+    
   };
 
   // Calculates the sub total of the invoice
@@ -212,10 +220,24 @@ angular.module('invoicing', [])
   angular.element(document).ready(function () {
     // Set focus
     document.getElementById('invoice-number').focus();
+    $scope.$on('changeItem', function(event, data) {
+      $timeout(function(){
+        $scope.invoice.items = $scope.invoice.items.map(function(item){
+          if(item.id === data.id) {
+            return data;
+          }
+          return item;
+        })
+      })
+    });
+    $scope.$on('removeItem', function(event, data) {
+      $scope.removeItem(data);
+    });
   })
 
 }])
 
 .component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
-.component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []));
+.component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []))
+.component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']));
