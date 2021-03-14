@@ -5,7 +5,7 @@ export class Tax extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tax: this.props.tax
+            tax: this.props.tax ?? 0
         }
     }
     render() {
@@ -23,12 +23,15 @@ export class Tax extends React.Component {
     }
 
     handleChange(event) {
+        const tax = event.target.value ?? 0
         this.setState({
-            tax: event.target.value ?? 0
+            tax: tax
         });
+        this.props.$scope.$emit('updateTax', {tax: tax});
     }
 
     calculateTax() {
-        return ((parseFloat(this.state.tax) * this.props.subTotal) / 100).toFixed(2);
+        const tax = parseFloat(this.state.tax);
+        return tax > 0 ? ((tax * this.props.subTotal) / 100).toFixed(2) : 0;
     }
 }

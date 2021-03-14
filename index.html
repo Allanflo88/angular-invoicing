@@ -64,8 +64,7 @@
         <tax-component currency-symbol="currencySymbol" sub-total="invoiceSubTotal()" tax="invoice.tax"></tax-component>
       </div>
       <div class="row">
-        <div class="col-xs-10 text-right">Grand Total:</div>
-        <div class="col-xs-2 text-right">{{calculateGrandTotal() | currency: currencySymbol}}</div>
+        <grandtotal-component currency-symbol="currencySymbol" sub-total="invoiceSubTotal()" tax="calculateTax()"></grandtotal-component>
       </div>
     </div>
     <div class="row noPrint actions">

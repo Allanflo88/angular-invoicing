@@ -6,6 +6,7 @@ import {TableRow} from '../src/components/tableRow.jsx';
 import {AddItemTableRow} from '../src/components/addItemTableRow.jsx';
 import {SubTotal} from '../src/components/subTotal.jsx';
 import {Tax} from '../src/components/tax.jsx';
+import {GrandTotal} from '../src/components/grandTotal.jsx';
 
 import angular from 'angular';
 
@@ -242,6 +243,14 @@ angular.module('invoicing', [])
         $scope.addItem();
       });
     });
+    $scope.$on('updateTax', function(event, data) {
+      $timeout(function(){
+        $scope.invoice.tax = data.tax;
+      })
+    });
+    $scope.$on('saveInvoice', function() {
+      saveInvoice();
+    });
   })
 
 }])
@@ -252,4 +261,5 @@ angular.module('invoicing', [])
 .component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']))
 .component('addItemComponent',  react2angular(AddItemTableRow, ['printMode'], ['$scope']))
 .component('subtotalComponent',  react2angular(SubTotal, ['currencySymbol', 'items'], ['$scope']))
-.component('taxComponent',  react2angular(Tax, ['currencySymbol', 'subTotal', 'tax'], ['$scope']));
+.component('taxComponent',  react2angular(Tax, ['currencySymbol', 'subTotal', 'tax'], ['$scope', 'LocalStorage']))
+.component('grandtotalComponent',  react2angular(GrandTotal, ['currencySymbol', 'subTotal', 'tax'], ['$scope']));
