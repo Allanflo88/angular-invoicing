@@ -13,8 +13,11 @@ export class SubTotal extends React.Component {
     }
 
     invoiceSubTotal() {
+        if(!this.props.items){
+            return 0;
+        }
         return this.props.items.reduce((acc, current) => {
             return acc + (current.qty * current.cost);
-        }, 0);
+        }, 0).toFixed(2);
     }
 }

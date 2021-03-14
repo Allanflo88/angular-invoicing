@@ -5,6 +5,7 @@ import {TableHeader} from '../src/components/tableHeader.jsx';
 import {TableRow} from '../src/components/tableRow.jsx';
 import {AddItemTableRow} from '../src/components/addItemTableRow.jsx';
 import {SubTotal} from '../src/components/subTotal.jsx';
+import {Tax} from '../src/components/tax.jsx';
 
 import angular from 'angular';
 
@@ -250,4 +251,5 @@ angular.module('invoicing', [])
 .component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []))
 .component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']))
 .component('addItemComponent',  react2angular(AddItemTableRow, ['printMode'], ['$scope']))
-.component('subtotalComponent',  react2angular(SubTotal, ['currencySymbol', 'items'], ['$scope']));
+.component('subtotalComponent',  react2angular(SubTotal, ['currencySymbol', 'items'], ['$scope']))
+.component('taxComponent',  react2angular(Tax, ['currencySymbol', 'subTotal', 'tax'], ['$scope']));

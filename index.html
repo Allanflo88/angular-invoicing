@@ -61,8 +61,7 @@
         <subtotal-component currency-symbol="currencySymbol" items="invoice.items"></subtotal-component>
       </div>
       <div class="row">
-        <div class="col-xs-10 text-right">Tax(%): <input ng-model="invoice.tax" ng-validate="number" style="width:43px"></div>
-        <div class="col-xs-2 text-right">{{calculateTax() | currency: currencySymbol}}</div>
+        <tax-component currency-symbol="currencySymbol" sub-total="invoiceSubTotal()" tax="invoice.tax"></tax-component>
       </div>
       <div class="row">
         <div class="col-xs-10 text-right">Grand Total:</div>
