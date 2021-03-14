@@ -14,18 +14,21 @@ export class Logo extends React.Component {
     }
     
     render() {
-        let logo;
+        let logo, buttons;
         if(!this.state.logoRemoved) {
             logo = <img id="company_logo" src={this.state.logo} alt="your image" width="300" />
+        }
+        if(!this.props.printMode) {
+            buttons = <div className="noPrint">
+                            <a onClick={() => this.editLogo()}>Edit Logo</a>
+                            <a onClick={() => this.toggleLogo()} id="remove_logo">{this.state.logoRemoved ? 'Show' : 'Hide'} logo</a>
+                        </div>
         }
         return <div>
                 <input type="file" id="imgInp" ref={this.fileInput} onChange={(e) => this.readUrl(e.target)}/>
                 {logo}
                 <div>
-                <div className="noPrint" ng-hide="printMode">
-                    <a onClick={() => this.editLogo()}>Edit Logo</a>
-                    <a onClick={() => this.toggleLogo()} id="remove_logo">{this.state.logoRemoved ? 'Show' : 'Hide'} logo</a>
-                </div>
+                    {buttons}
                 </div>
             </div>;
     }

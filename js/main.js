@@ -226,4 +226,4 @@ angular.module('invoicing', [])
 
 }])
 
-.component('logoComponent',  react2angular(Logo, [], ['DEFAULT_LOGO','LocalStorage']));
+.component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']));
