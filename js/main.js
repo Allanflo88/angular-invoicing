@@ -177,38 +177,17 @@ angular.module('invoicing', [])
   angular.element(document).ready(function () {
     // Set focus
     document.getElementById('invoice-number').focus();
-    $scope.$on('changeItem', function(event, data) {
-      $timeout(function(){
-        $scope.invoice.items = $scope.invoice.items.map(function(item){
-          if(item.id === data.id) {
-            return data;
-          }
-          return item;
-        })
-      })
-    });
-    $scope.$on('removeItem', function(event, data) {
-      $scope.removeItem(data);
-    });
-    $scope.$on('addItem', function() {
-      $timeout(function(){
-        $scope.addItem();
-      });
-    });
-    $scope.$on('updateTax', function(event, data) {
-      $timeout(function(){
-        $scope.invoice.tax = data.tax;
-      })
-    });
-    $scope.$on('saveInvoice', function() {
-      saveInvoice();
-    });
     $scope.$on('setDefault', function(){
       $timeout(function(){
         setInvoice(DEFAULT_INVOICE);
       });
-    })
-  })
+    });
+    $scope.$on('saveInvoice', function(event,data) {
+      $timeout(function(){
+        setInvoice(data);
+      });
+    });
+  });
 
 }])
 
@@ -216,4 +195,4 @@ angular.module('invoicing', [])
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
 .component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
 .component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']))
-.component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope','LocalStorage']));
+.component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope']));

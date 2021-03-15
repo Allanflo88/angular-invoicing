@@ -68,6 +68,7 @@ export class ProductsTable extends React.Component {
             grandTotal: SummaryService.calculateGrandTotal(invoice),
             subTotal: SummaryService.invoiceSubTotal(invoice)
         });
+        this.saveInvoice(invoice);
     }
 
     updateItem(updatedItem) {
@@ -81,6 +82,7 @@ export class ProductsTable extends React.Component {
             grandTotal: SummaryService.calculateGrandTotal(invoice),
             subTotal: SummaryService.invoiceSubTotal(invoice)
         });
+        this.saveInvoice(invoice);
     }
 
     addItem() {
@@ -89,6 +91,7 @@ export class ProductsTable extends React.Component {
         this.setState({
             invoice: invoice
         });
+        this.saveInvoice(invoice);
     }
     
     calcTax(tax) {
@@ -98,6 +101,10 @@ export class ProductsTable extends React.Component {
             invoice: invoice,
             grandTotal: SummaryService.calculateGrandTotal(invoice),
         });
+        this.saveInvoice(invoice);
+    }
+    saveInvoice(invoice) {
+        this.props.$scope.$emit('saveInvoice', invoice);
     }
 
 }
