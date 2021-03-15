@@ -8,6 +8,7 @@ import {SubTotal} from '../src/components/summary/subTotal.jsx';
 import {Tax} from '../src/components/summary/tax.jsx';
 import {GrandTotal} from '../src/components/summary/grandTotal.jsx';
 import {PrintButton} from '../src/components/buttons/printButton.jsx';
+import {ResetButton} from '../src/components/buttons/resetButton.jsx';
 
 import angular from 'angular';
 
@@ -242,6 +243,11 @@ angular.module('invoicing', [])
     $scope.$on('saveInvoice', function() {
       saveInvoice();
     });
+    $scope.$on('setDefault', function(){
+      $timeout(function(){
+        setInvoice(DEFAULT_INVOICE);
+      });
+    })
   })
 
 }])
@@ -254,4 +260,5 @@ angular.module('invoicing', [])
 .component('subtotalComponent',  react2angular(SubTotal, ['currencySymbol', 'items'], ['$scope']))
 .component('taxComponent',  react2angular(Tax, ['currencySymbol', 'subTotal', 'tax'], ['$scope', 'LocalStorage']))
 .component('grandtotalComponent',  react2angular(GrandTotal, ['currencySymbol', 'subTotal', 'tax'], ['$scope']))
-.component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []));
+.component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
+.component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']));
