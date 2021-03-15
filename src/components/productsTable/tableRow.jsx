@@ -45,7 +45,7 @@ export class TableRow extends React.Component {
                 </div>
     }
     removeItem() {
-        this.props.$scope.$emit('removeItem', this.state);
+        this.props.removeItemCallback(this.state.id);
     }
     handleChange(event) {
         const target = event.target;
@@ -54,7 +54,7 @@ export class TableRow extends React.Component {
         this.setState({
             [name]: target.value
         });
-        this.props.$scope.$emit('changeItem', {
+        this.props.updateItemCallback({
             ...this.state,
             [name]: target.value
         });

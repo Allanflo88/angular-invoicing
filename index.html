@@ -46,27 +46,7 @@
         <div class="input-container"><input type="text" ng-model="invoice.company_info.postal"/></div>
       </div>
     </div>
-    <div class="items-table">
-      <table-header-component currency-symbol="currencySymbol"></table-header-component>
-      <div class="row invoice-item" ng-repeat="item in invoice.items track by $index" ng-animate="'slide-down'">
-        <table-row-component 
-          item="item" 
-          currency-symbol="currencySymbol"
-          print-mode="printMode"></table-row-component>
-      </div>
-      <div class="row invoice-item">
-        <add-item-component print-mode="printMode"></add-item-component>
-      </div>
-      <div class="row">
-        <subtotal-component currency-symbol="currencySymbol" items="invoice.items"></subtotal-component>
-      </div>
-      <div class="row">
-        <tax-component currency-symbol="currencySymbol" sub-total="invoiceSubTotal()" tax="invoice.tax"></tax-component>
-      </div>
-      <div class="row">
-        <grandtotal-component currency-symbol="currencySymbol" sub-total="invoiceSubTotal()" tax="calculateTax()"></grandtotal-component>
-      </div>
-    </div>
+    <productstable-component invoice="invoice" print-mode="printMode" currency-symbol="currencySymbol"></productstable-component>
     <div class="row noPrint actions">
       <printbutton-component print-mode="printMode"></printbutton-component>
       <resetbutton-component></resetbutton-component>

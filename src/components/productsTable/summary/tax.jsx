@@ -1,11 +1,12 @@
 import React from 'react';
+import { SummaryService } from '../../../services/summary';
 
 export class Tax extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            tax: this.props.tax ?? 0
+            tax: this.props.invoice.tax ?? 0
         }
     }
     render() {
@@ -17,7 +18,7 @@ export class Tax extends React.Component {
                             style={{width: "43px"}}/>
                     </div>
                     <div className="col-xs-2 text-right">
-                        {`${this.props.currencySymbol} ${this.calculateTax()}`}
+                        {`${this.props.currencySymbol} ${SummaryService.calculateTax(this.props.invoice)}`}
                     </div>
                 </div>
     }
@@ -27,11 +28,6 @@ export class Tax extends React.Component {
         this.setState({
             tax: tax
         });
-        this.props.$scope.$emit('updateTax', {tax: tax});
-    }
-
-    calculateTax() {
-        const tax = parseFloat(this.state.tax);
-        return tax > 0 ? ((tax * this.props.subTotal) / 100).toFixed(2) : 0;
+        this.props.taxCallback(tax);
     }
 }

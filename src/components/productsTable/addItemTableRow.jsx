@@ -12,6 +12,6 @@ export class AddItemTableRow extends React.Component {
     }
 
     addItem() {
-        this.props.$scope.$emit('addItem');
+        this.props.addItemCallback();
     }
 }

@@ -1,12 +1,7 @@
 import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
-import {TableHeader} from '../src/components/productsTable/tableHeader.jsx';
-import {TableRow} from '../src/components/productsTable/tableRow.jsx';
-import {AddItemTableRow} from '../src/components/productsTable/addItemTableRow.jsx';
-import {SubTotal} from '../src/components/summary/subTotal.jsx';
-import {Tax} from '../src/components/summary/tax.jsx';
-import {GrandTotal} from '../src/components/summary/grandTotal.jsx';
+import {ProductsTable} from '../src/components/productsTable/productsTable.jsx';
 import {PrintButton} from '../src/components/buttons/printButton.jsx';
 import {ResetButton} from '../src/components/buttons/resetButton.jsx';
 
@@ -158,41 +153,6 @@ angular.module('invoicing', [])
 
   })()
 
-  $scope.printInfo = function() {
-    window.print();
-  };
-
-  // Remotes an item from the invoice
-  $scope.removeItem = function(itemToRemove) {
-    $timeout(function(){
-      var indexOfitem = $scope.invoice.items.findIndex(function(item){
-        return item.id === itemToRemove.id;
-      })
-      $scope.invoice.items.splice(indexOfitem, 1);
-    });
-    
-  };
-
-  // Calculates the sub total of the invoice
-  $scope.invoiceSubTotal = function() {
-    var total = 0.00;
-    angular.forEach($scope.invoice.items, function(item, key){
-      total += (item.qty * item.cost);
-    });
-    return total;
-  };
-
-  // Calculates the tax of the invoice
-  $scope.calculateTax = function() {
-    return (($scope.invoice.tax * $scope.invoiceSubTotal())/100);
-  };
-
-  // Calculates the grand total of the invoice
-  $scope.calculateGrandTotal = function() {
-    saveInvoice();
-    return $scope.calculateTax() + $scope.invoiceSubTotal();
-  };
-
   // Clears the local storage
   $scope.clearLocalStorage = function() {
     var confirmClear = confirm('Are you sure you would like to clear the invoice?');
@@ -254,11 +214,6 @@ angular.module('invoicing', [])
 
 .component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
-.component('tableHeaderComponent',  react2angular(TableHeader, ['currencySymbol'], []))
-.component('tableRowComponent',  react2angular(TableRow, ['item','currencySymbol', 'printMode'], ['$scope']))
-.component('addItemComponent',  react2angular(AddItemTableRow, ['printMode'], ['$scope']))
-.component('subtotalComponent',  react2angular(SubTotal, ['currencySymbol', 'items'], ['$scope']))
-.component('taxComponent',  react2angular(Tax, ['currencySymbol', 'subTotal', 'tax'], ['$scope', 'LocalStorage']))
-.component('grandtotalComponent',  react2angular(GrandTotal, ['currencySymbol', 'subTotal', 'tax'], ['$scope']))
 .component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
-.component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']));
+.component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']))
+.component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope','LocalStorage']));
