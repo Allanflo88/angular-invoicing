@@ -1,5 +1,6 @@
 import {react2angular} from 'react2angular';
-import {Logo} from '../src/components/logo.jsx';
+import {Logo} from '../src/components/branding/logo.jsx';
+import {InvoiceNumber} from '../src/components/branding/invoiceNumber.jsx';
 import {Footer} from '../src/components/footer.jsx';
 import {InfoTable} from '../src/components/infoTable/infoTable.jsx';
 import {ProductsTable} from '../src/components/productsTable/productsTable.jsx';
@@ -138,7 +139,6 @@ angular.module('invoicing', [])
   // Runs on document.ready
   angular.element(document).ready(function () {
     // Set focus
-    document.getElementById('invoice-number').focus();
     $scope.$on('setDefault', function(){
       $timeout(function(){
         setInvoice(DEFAULT_INVOICE);
@@ -154,6 +154,12 @@ angular.module('invoicing', [])
         $scope.currencySymbol = data;
       });
     });
+    $scope.$on('updateInvoiceNumber', function(event,data) {
+      $timeout(function() {
+        $scope.invoice.invoice_number = data;
+        saveInvoice();
+      });
+    });
   });
 
 }])
@@ -163,4 +169,5 @@ angular.module('invoicing', [])
 .component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
 .component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']))
 .component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope']))
-.component('infotableComponent',  react2angular(InfoTable, ['printMode', 'currencySymbol', 'invoice'], ['$scope']));
+.component('infotableComponent',  react2angular(InfoTable, ['printMode', 'currencySymbol', 'invoice'], ['$scope']))
+.component('invoicenumberComponent',  react2angular(InvoiceNumber, ['invoiceNumber'], ['$scope']));

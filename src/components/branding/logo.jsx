@@ -24,13 +24,13 @@ export class Logo extends React.Component {
                             <a onClick={() => this.toggleLogo()} id="remove_logo">{this.state.logoRemoved ? 'Show' : 'Hide'} logo</a>
                         </div>
         }
-        return <div>
-                <input type="file" id="imgInp" ref={this.fileInput} onChange={(e) => this.readUrl(e.target)}/>
-                {logo}
-                <div>
-                    {buttons}
-                </div>
-            </div>;
+        return <div className="col-xs-6 logo-container">
+                    <input type="file" id="imgInp" ref={this.fileInput} onChange={(e) => this.readUrl(e.target)}/>
+                    {logo}
+                    <div>
+                        {buttons}
+                    </div>
+                </div>;
     }
 
     editLogo() {

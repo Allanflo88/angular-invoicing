@@ -19,13 +19,9 @@
     </div>
     <div class="row branding">
       <div class="col-xs-6">
-        <div class="invoice-number-container">
-          <label for="invoice-number">Invoice #</label><input type="text" id="invoice-number" ng-model="invoice.invoice_number" />
-        </div>
+        <invoicenumber-component invoice-number="invoice.invoice_number"></invoicenumber-component>
       </div>
-      <div class="col-xs-6 logo-container">
-        <logo-component print-mode="printMode"></logo-component>
-      </div>
+      <logo-component print-mode="printMode"></logo-component>
     </div>
     <infotable-component 
       invoice="invoice" 
