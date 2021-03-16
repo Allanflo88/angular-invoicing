@@ -1,4 +1,5 @@
 import React from 'react';
+import { LocalStorage } from '../../services/localStorage';
 
 export class ResetButton extends React.Component {
     constructor(props){
@@ -12,8 +13,8 @@ export class ResetButton extends React.Component {
     clearLocalStorage() {
         const confirmClear = confirm('Are you sure you would like to clear the invoice?');
         if(confirmClear) {
-            this.props.LocalStorage.clear();
-            this.props.$scope.$emit('setDefault');
+            LocalStorage.clear();
+            this.props.resetCallback();
         }
     }
 }

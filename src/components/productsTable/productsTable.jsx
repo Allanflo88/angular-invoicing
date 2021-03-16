@@ -22,7 +22,7 @@ export class ProductsTable extends React.Component {
     }
 
     render() {
-        const items = this.state.invoice.items.map((item) => {
+        const items = this.props.invoice.items.map((item) => {
             return <div className="row invoice-item" key={item.id}>
                         <TableRow
                             item={item}

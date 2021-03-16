@@ -21,6 +21,7 @@ export class Invoice extends React.Component {
         this.updateInvoiceNumber = this.updateInvoiceNumber.bind(this);
         this.updateInvoiceInfo = this.updateInvoiceInfo.bind(this);
         this.updateCurrencySymbol = this.updateCurrencySymbol.bind(this);
+        this.resetInvoice = this.resetInvoice.bind(this);
     }
 
     componentDidUpdate(){
@@ -59,7 +60,8 @@ export class Invoice extends React.Component {
                                 this.state.printMode ? 
                                 <PrintButton></PrintButton> : null
                             }
-                            <ResetButton></ResetButton>
+                            <ResetButton
+                                resetCallback={this.resetInvoice}></ResetButton>
                             <a 
                                 href="#" 
                                 className="btn btn-primary"
@@ -92,13 +94,20 @@ export class Invoice extends React.Component {
         this.setState({
             ...this.state,
             invoice: invoice
-        })
+        });
     }
 
     updateCurrencySymbol(currencySymbol) {
         this.setState({
             ...this.state,
             currencySymbol: currencySymbol
-        })
+        });
+    }
+    
+    resetInvoice() {
+        this.setState({
+            ...this.state,
+            invoice: DEFAULT_INVOICE
+        });
     }
 }

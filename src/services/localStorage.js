@@ -33,6 +33,6 @@ export class LocalStorage {
 
     static clear() {
         localStorage['invoice'] = '';
-        Service.clearLogo();
+        this.clearLogo();
       };
 }
