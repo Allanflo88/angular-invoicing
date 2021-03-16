@@ -1,4 +1,4 @@
-export const AvailableCurrencies = [
+export const AVAILABLE_CURRENCIES = [
     {
       name: 'British Pound (£)',
       symbol: '£'

@@ -1,4 +1,5 @@
 import React from 'react';
+import {DEFAULT_LOGO} from '../../constants/defaultLogo'
 
 export class Logo extends React.Component {
 
@@ -7,7 +8,7 @@ export class Logo extends React.Component {
         let logo = this.props.LocalStorage.getLogo();
         this.state = {
             logoRemoved: false,
-            logo: logo.length ? log : this.props.DEFAULT_LOGO
+            logo: logo.length ? log : DEFAULT_LOGO
         }
         this.fileInput = React.createRef();
         

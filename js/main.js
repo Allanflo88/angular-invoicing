@@ -11,9 +11,6 @@ import angular from 'angular';
 
 angular.module('invoicing', [])
 
-// The default logo for the invoice
-.constant('DEFAULT_LOGO', 'images/metaware_logo.png')
-
 // The invoice displayed when the user first uses the app
 .constant('DEFAULT_INVOICE', {
   tax: 13.00,
@@ -99,8 +96,8 @@ angular.module('invoicing', [])
 }])
 
 // Main application controller
-.controller('InvoiceCtrl', ['$scope', '$http','$timeout', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage',
-  function($scope, $http,$timeout, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage) {
+.controller('InvoiceCtrl', ['$scope', '$http','$timeout', 'DEFAULT_INVOICE', 'LocalStorage',
+  function($scope, $http,$timeout, DEFAULT_INVOICE, LocalStorage) {
 
   // Set defaults
   $scope.currencySymbol = '$';
@@ -164,7 +161,7 @@ angular.module('invoicing', [])
 
 }])
 
-.component('logoComponent',  react2angular(Logo, ['printMode'], ['DEFAULT_LOGO','LocalStorage']))
+.component('logoComponent',  react2angular(Logo, ['printMode'], ['LocalStorage']))
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
 .component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
 .component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']))
