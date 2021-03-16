@@ -39,7 +39,7 @@ export class InfoTable extends React.Component {
             customer_info: info
         }
         this.setState(updatedState);
-        this.props.$scope.$emit('saveInvoice', updatedState);
+        this.props.infoTableCallback(updatedState);
     }
 
     updateCompanyInfo(info) {
@@ -48,10 +48,10 @@ export class InfoTable extends React.Component {
             company_info: info
         }
         this.setState(updatedState);
-        this.props.$scope.$emit('saveInvoice', updatedState);
+        this.props.infoTableCallback(updatedState);
     }
 
     selectCurrent(currency){
-        this.props.$scope.$emit('updateCurrency', currency);
+        this.props.currencyCallback(currency);
     }
 }

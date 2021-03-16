@@ -24,3 +24,5 @@ export const AVAILABLE_CURRENCIES = [
       symbol: '$'
     }
   ]
+
+export const DEFAULT_CURRENCY = AVAILABLE_CURRENCIES[AVAILABLE_CURRENCIES.length - 1];

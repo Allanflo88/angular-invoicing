@@ -5,40 +5,10 @@
   <meta charset='utf-8'>
   <meta name="description" content="AngularJS and Angular Code Example for creating Invoices and Invoicing Application">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script
-    src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-    crossorigin="anonymous"></script>
 </head>
-<body ng-app="invoicing" ng-controller="InvoiceCtrl" >
-  <div class="container" width="800px" id="invoice" >
-    <div class="row">
-      <div class="col-xs-12 heading">
-        INVOICE
-      </div>
-    </div>
-    <div class="row branding">
-      <div class="col-xs-6">
-        <invoicenumber-component invoice-number="invoice.invoice_number"></invoicenumber-component>
-      </div>
-      <logo-component print-mode="printMode"></logo-component>
-    </div>
-    <infotable-component 
-      invoice="invoice" 
-      print-mode="printMode" 
-      currency-symbol="currencySymbol"></infotable-component>
-    <productstable-component 
-      invoice="invoice" 
-      print-mode="printMode" 
-      currency-symbol="currencySymbol"></productstable-component>
-    <div class="row noPrint actions">
-      <printbutton-component print-mode="printMode"></printbutton-component>
-      <resetbutton-component></resetbutton-component>
-      <a href="#" class="btn btn-primary" ng-hide="printMode" ng-click="printMode = true;">Turn On Print Mode</a>
-      <a href="#" class="btn btn-primary" ng-show="printMode" ng-click="printMode = false;">Turn Off Print Mode</a>
-    </div>
+<body id="root">
+  <div id="app">
+    <Invoice></Invoice>
   </div>
-
-  <footer-component print-mode="printMode"></footer-component>
 </body>
 </html>

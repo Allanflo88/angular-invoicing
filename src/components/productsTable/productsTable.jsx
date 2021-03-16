@@ -104,7 +104,7 @@ export class ProductsTable extends React.Component {
         this.saveInvoice(invoice);
     }
     saveInvoice(invoice) {
-        this.props.$scope.$emit('saveInvoice', invoice);
+        this.props.productsTableCallback(invoice);
     }
 
 }

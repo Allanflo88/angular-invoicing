@@ -32,6 +32,6 @@ export class InvoiceNumber extends React.Component {
         this.setState({
             invoiceNumber: event.target.value
         });
-        this.props.$scope.$emit('updateInvoiceNumber', event.target.value);
+        this.props.invoiceNumberCallback(event.target.value);
     }
 }

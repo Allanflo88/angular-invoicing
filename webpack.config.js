@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require("webpack");
 
 const distPath = path.join(__dirname, 'dist');
 
@@ -28,6 +29,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ],
   module: {
@@ -41,10 +46,10 @@ module.exports = {
         type: 'asset/resource'
       },
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: '/node_modules/',
         include: [
-          path.resolve(__dirname, 'src/components')
+          path.resolve(__dirname, 'src')
         ],
         use: {
           loader: 'babel-loader',

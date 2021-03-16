@@ -2,10 +2,6 @@ import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/branding/logo.jsx';
 import {InvoiceNumber} from '../src/components/branding/invoiceNumber.jsx';
 import {Footer} from '../src/components/footer.jsx';
-import {InfoTable} from '../src/components/infoTable/infoTable.jsx';
-import {ProductsTable} from '../src/components/productsTable/productsTable.jsx';
-import {PrintButton} from '../src/components/buttons/printButton.jsx';
-import {ResetButton} from '../src/components/buttons/resetButton.jsx';
 
 import angular from 'angular';
 

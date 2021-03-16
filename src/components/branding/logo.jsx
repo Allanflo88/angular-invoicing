@@ -1,14 +1,14 @@
 import React from 'react';
 import {DEFAULT_LOGO} from '../../constants/defaultLogo'
+import { LocalStorage } from '../../services/localStorage';
 
 export class Logo extends React.Component {
 
     constructor(props) {
         super(props);
-        let logo = this.props.LocalStorage.getLogo();
         this.state = {
             logoRemoved: false,
-            logo: logo.length ? log : DEFAULT_LOGO
+            logo: LocalStorage.getLogo() ?? DEFAULT_LOGO
         }
         this.fileInput = React.createRef();
         
@@ -41,7 +41,7 @@ export class Logo extends React.Component {
         this.setState({
             logoRemoved: !this.state.logoRemoved
         })
-        this.props.LocalStorage.clearLogo();
+        LocalStorage.clearLogo();
     }
     readUrl(input) {
         if (input.files && input.files.length) {
@@ -50,7 +50,7 @@ export class Logo extends React.Component {
               this.setState({
                   logo: e.target.result
               })
-              this.props.LocalStorage.setLogo(e.target.result);
+              LocalStorage.setLogo(e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
