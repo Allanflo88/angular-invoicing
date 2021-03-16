@@ -1,5 +1,5 @@
 import React from 'react';
-import { CurrencySelect } from '../currencySelect.jsx'
+import { CurrencySelect } from './currencySelect.jsx'
 import { CustomerTable } from './customerTable.jsx'
 
 export class InfoTable extends React.Component {

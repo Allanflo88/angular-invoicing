@@ -1,5 +1,5 @@
 import React from 'react';
-import { AVAILABLE_CURRENCIES } from '../constants/availableCurrencies.js'
+import { AVAILABLE_CURRENCIES } from '../../constants/availableCurrencies.js'
 
 export class CurrencySelect extends React.Component {
     constructor(props){
