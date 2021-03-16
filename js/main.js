@@ -1,6 +1,7 @@
 import {react2angular} from 'react2angular';
 import {Logo} from '../src/components/logo.jsx';
 import {Footer} from '../src/components/footer.jsx';
+import {InfoTable} from '../src/components/infoTable/infoTable.jsx';
 import {ProductsTable} from '../src/components/productsTable/productsTable.jsx';
 import {PrintButton} from '../src/components/buttons/printButton.jsx';
 import {ResetButton} from '../src/components/buttons/resetButton.jsx';
@@ -96,46 +97,9 @@ angular.module('invoicing', [])
 
 }])
 
-.service('Currency', [function(){
-
-  var service = {};
-
-  service.all = function() {
-    return [
-      {
-        name: 'British Pound (£)',
-        symbol: '£'
-      },
-      {
-        name: 'Canadian Dollar ($)',
-        symbol: 'CAD $ '
-      },
-      {
-        name: 'Euro (€)',
-        symbol: '€'
-      },
-      {
-        name: 'Indian Rupee (₹)',
-        symbol: '₹'
-      },
-      {
-        name: 'Norwegian krone (kr)',
-        symbol: 'kr '
-      },
-      {
-        name: 'US Dollar ($)',
-        symbol: '$'
-      }
-    ]
-  }
-
-  return service;
-  
-}])
-
 // Main application controller
-.controller('InvoiceCtrl', ['$scope', '$http','$timeout', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage', 'Currency',
-  function($scope, $http,$timeout, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage, Currency) {
+.controller('InvoiceCtrl', ['$scope', '$http','$timeout', 'DEFAULT_INVOICE', 'DEFAULT_LOGO', 'LocalStorage',
+  function($scope, $http,$timeout, DEFAULT_INVOICE, DEFAULT_LOGO, LocalStorage) {
 
   // Set defaults
   $scope.currencySymbol = '$';
@@ -148,8 +112,6 @@ angular.module('invoicing', [])
       var invoice = LocalStorage.getInvoice();
       $scope.invoice = invoice ? invoice : DEFAULT_INVOICE;
     }();
-
-    $scope.availableCurrencies = Currency.all();
 
   })()
 
@@ -187,6 +149,11 @@ angular.module('invoicing', [])
         setInvoice(data);
       });
     });
+    $scope.$on('updateCurrency', function(event,data) {
+      $timeout(function() {
+        $scope.currencySymbol = data;
+      });
+    });
   });
 
 }])
@@ -195,4 +162,5 @@ angular.module('invoicing', [])
 .component('footerComponent',  react2angular(Footer, ['printMode'], []))
 .component('printbuttonComponent',  react2angular(PrintButton, ['printMode'], []))
 .component('resetbuttonComponent',  react2angular(ResetButton, [], ['$scope','LocalStorage']))
-.component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope']));
+.component('productstableComponent',  react2angular(ProductsTable, ['invoice', 'printMode', 'currencySymbol'], ['$scope']))
+.component('infotableComponent',  react2angular(InfoTable, ['printMode', 'currencySymbol', 'invoice'], ['$scope']));
