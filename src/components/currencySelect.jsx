@@ -5,7 +5,7 @@ export class CurrencySelect extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            currencySymbol: this.props.currencySymbol ?? AvailableCurrencies[AvailableCurrencies - 1]
+            currencySymbol: this.props.currencySymbol ?? AvailableCurrencies[AvailableCurrencies - 1].symbol
         }
     }
 
