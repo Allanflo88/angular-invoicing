@@ -16,7 +16,7 @@ export class Invoice extends React.Component {
             printMode: false,
             logoRemoved: false,
             invoice: LocalStorage.getInvoice() ?? DEFAULT_INVOICE,
-            currencySymbol: DEFAULT_CURRENCY
+            currencySymbol: DEFAULT_CURRENCY.symbol
         }
         this.updateInvoiceNumber = this.updateInvoiceNumber.bind(this);
         this.updateInvoiceInfo = this.updateInvoiceInfo.bind(this);
@@ -52,7 +52,7 @@ export class Invoice extends React.Component {
                         <ProductsTable
                             invoice={this.state.invoice} 
                             printMode={this.state.printMode} 
-                            currency-symbol={this.state.currencySymbol}
+                            currencySymbol={this.state.currencySymbol}
                             productsTableCallback={this.updateInvoiceInfo}></ProductsTable>
                         <div className="row noPrint actions">
                             {
