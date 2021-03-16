@@ -1,4 +1,5 @@
 import React from 'react';
+import { SummaryService } from '../../services/summary';
 
 export class TableRow extends React.Component {
 
@@ -14,7 +15,7 @@ export class TableRow extends React.Component {
                     <div className="col-xs-1 remove-item-container">
                         {this.props.printMode ? null : removeItemButton}
                     </div>
-                    <div className="col-xs-5 input-container">
+                    <div className="col-xs-3 input-container">
                         <input 
                             value={this.state.description} 
                             placeholder="Description" 
@@ -39,6 +40,14 @@ export class TableRow extends React.Component {
                             onChange={(e) => this.handleChange(e)} 
                             required/>
                     </div>
+                    <div className="col-xs-2 input-container">
+                        <input 
+                            value={this.state.discount} 
+                            placeholder="Discount" 
+                            name="discount"
+                            size="4"
+                            onChange={(e) => this.handleChange(e)}  />
+                    </div>
                     <div className="col-xs-2 text-right input-container">
                         { `${this.props.currencySymbol} ${this.calcTotal()}`}
                     </div>
@@ -60,7 +69,6 @@ export class TableRow extends React.Component {
         });
     }
     calcTotal() {
-        const total = this.state.cost * this.state.qty
-        return total.toFixed(2);
+        return SummaryService.calculateItemTotal(this.state);
     }
 }

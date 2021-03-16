@@ -87,7 +87,7 @@ export class ProductsTable extends React.Component {
 
     addItem() {
         let invoice = this.state.invoice;
-        invoice.items.push({ id: invoice.items.length + 1, qty: 0, description: '', cost: 0 })
+        invoice.items.push({ id: invoice.items.length + 1, qty: 0, description: '', cost: 0, discount: 0 })
         this.setState({
             invoice: invoice
         });
